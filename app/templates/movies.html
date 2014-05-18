@@ -1,0 +1,42 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container-fluid">
+
+<h3>Movies Search</h3>
+
+	<div class="row">
+  		<div class="col-md-4">{{ wtf.quick_form(form) }}</div>
+	</div>
+
+	{% if results %}
+	<h3>Results</h3>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th></th>
+				<th>Title (Year)</th>
+				<th>Tomatormeter (Score)</th>
+				<th>Runtime</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for r in results %}
+			{% if r['ratings']['critics_score'] != -1 %}
+			<tr>
+				<td><img class="img-thumbnail" src="{{ r['posters']['thumbnail'] }}" /></td>
+				<td>{{ r['title'] }} ({{ r['year'] }})</td>
+				<td>{{ r['ratings']['critics_rating'] }} ({{ r['ratings']['critics_score'] }})</td>
+				<td>{{ r['runtime'] }}</td>
+			</tr>
+			{% endif %}
+			{% endfor %}
+		</tbody>
+	</table>
+	{% endif %}
+
+</div>
+
+{% endblock %}
