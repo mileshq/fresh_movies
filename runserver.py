@@ -1,5 +1,11 @@
+#import os
+#from app import create_app
+#app = create_app(os.getenv('FLASK_CONFIG_NAME') or 'default')
+
 from app import app
-app.run(debug=True)
+
+if __name__ == '__main__':
+	app.run()
 
 """ 
 TODO LIST

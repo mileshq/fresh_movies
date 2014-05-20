@@ -15,5 +15,5 @@ def index():
 			return render_template('movies.html', form=form)
 
 		rt = RottenTomatoesAPIManager(app.config['ROTTEN_TOMATOES_API_KEY'])
-		rt_results = rt.movies_search(form.movie.data, page_limit=10, page=1)
+		rt_results = rt.movies_search(form.search_movie.data, page_limit=10, page=1)
 		return render_template('movies.html', results=rt_results['movies'], form=form)
