@@ -1,8 +1,8 @@
-from app import app
-from flask import render_template, request, flash
+from flask import render_template, request
 from flask.ext.wtf import form
-from RottenTomatoesAPIManager import RottenTomatoesAPIManager
+from RottenTomatoesAPIWrapper import RottenTomatoesAPIWrapper
 from forms import SearchMovieForm
+from app import app
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -14,6 +14,6 @@ def index():
 		if form.validate_on_submit() == False:
 			return render_template('movies.html', form=form)
 
-		rt = RottenTomatoesAPIManager(app.config['ROTTEN_TOMATOES_API_KEY'])
+		rt = RottenTomatoesAPIWrapper(app.config['ROTTEN_TOMATOES_API_KEY'])
 		rt_results = rt.movies_search(form.search_movie.data, page_limit=10, page=1)
 		return render_template('movies.html', results=rt_results['movies'], form=form)
