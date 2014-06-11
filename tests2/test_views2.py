@@ -1,5 +1,5 @@
 import unittest
-from flask import Flask, url_for
+from flask import Flask
 from app import app
 
 class TestIndex(unittest.TestCase):

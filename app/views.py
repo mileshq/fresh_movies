@@ -1,8 +1,8 @@
 from flask import render_template, request
 from flask.ext.wtf import form
-from .RottenTomatoesAPIWrapper import RottenTomatoesAPIWrapper
-from .forms import SearchMovieForm
-from . import app
+from RottenTomatoesAPIWrapper import RottenTomatoesAPIWrapper
+from forms import SearchMovieForm
+from app import app
 
 @app.route('/movies', methods=['GET', 'POST'])
 def index():
