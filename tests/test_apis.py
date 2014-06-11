@@ -1,14 +1,15 @@
 from flask import Flask
-from flask.ext.testing import TestCase
-from config import UnitTestConfig
+import unittest
+from config import config 
 from app.RottenTomatoesAPIWrapper import RottenTomatoesAPIWrapper	
+from app import app
 
-class TestAPIWrapper(TestCase):
+class TestAPIWrapper(unittest.TestCase):
 
-	def create_app(self):
-		app = Flask(__name__)
-		app.config.from_object(UnitTestConfig)
-		return app
+    @classmethod
+    def setUpClass(cls):
+        app.config.from_object(config['unit_test'])
+        cls.client = app.test_client()
 
 	def setUp(self):
 		self.api_key = self.app.config['ROTTEN_TOMATOES_API_KEY']
