@@ -14,9 +14,12 @@ def index():
 		if form.validate_on_submit() == False:
 			return render_template('movies.html', form=form)
 
-		rt = RottenTomatoesAPIWrapper(app.config['ROTTEN_TOMATOES_API_KEY'])
-		rt_results = rt.movies_search(form.search_movie.data, page_limit=10, page=1)
-		return render_template('movies.html', results=rt_results['movies'], form=form)
+        results = getMovies(form.search_movie.data)
+        return render_template('movies.html', results=results, form=form)
+
+def getMovies(data):
+    rt = RottenTomatoesAPIWrapper(app.config['ROTTEN_TOMATOES_API_KEY'])
+    return rt.movies_search(data, page_limit=10, page=1)['movies']
 
 @app.route('/test')
 def test_route():
