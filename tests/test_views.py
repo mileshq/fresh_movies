@@ -1,4 +1,5 @@
-from flask import Flask, url_for
+import unittest
+from flask import Flask
 from flask.ext.testing import TestCase
 from config import config
 from app.views import index, test_route

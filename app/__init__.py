@@ -1,15 +1,12 @@
 from flask import Flask
-from flask_bootstrap import Bootstrap
+from flask.ext.bootstrap import Bootstrap
 from config import config
-
-#print "__name__: {}".format(__name__)
 
 app = Flask(__name__)
 app.config.from_object(config['default'])
 Bootstrap(app)
 
 from . import views
-#print app.view_functions
 
 """
 def create_app(config_name):

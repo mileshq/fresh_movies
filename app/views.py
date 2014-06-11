@@ -4,7 +4,7 @@ from .RottenTomatoesAPIWrapper import RottenTomatoesAPIWrapper
 from .forms import SearchMovieForm
 from . import app
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/movies', methods=['GET', 'POST'])
 def index():
 	form = SearchMovieForm()
 	if request.method == 'GET':
